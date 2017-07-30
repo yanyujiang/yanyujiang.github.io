@@ -1,0 +1,678 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="踏着头顶的太阳，去了JD去面试，之前没有准备好，结果被虐的比较惨，记下了面试的一些问题 1.介绍下ArrayList和linkedList的区别，内部的实现，如果删除linkedList里的一个元素会发生什么变化？ 2.介绍下hashmap的内部实现，如果发生hash冲突怎么解决，hashmap是线程安全的嘛？怎么解决线程不安全的问题?    concurrentHashMap里是怎么实现的，其中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JD面试情况1">
+<meta property="og:url" content="http://yoursite.com/2017/07/14/interview/index.html">
+<meta property="og:site_name" content="寒江夜雨行个人博客">
+<meta property="og:description" content="踏着头顶的太阳，去了JD去面试，之前没有准备好，结果被虐的比较惨，记下了面试的一些问题 1.介绍下ArrayList和linkedList的区别，内部的实现，如果删除linkedList里的一个元素会发生什么变化？ 2.介绍下hashmap的内部实现，如果发生hash冲突怎么解决，hashmap是线程安全的嘛？怎么解决线程不安全的问题?    concurrentHashMap里是怎么实现的，其中">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-07-30T13:25:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JD面试情况1">
+<meta name="twitter:description" content="踏着头顶的太阳，去了JD去面试，之前没有准备好，结果被虐的比较惨，记下了面试的一些问题 1.介绍下ArrayList和linkedList的区别，内部的实现，如果删除linkedList里的一个元素会发生什么变化？ 2.介绍下hashmap的内部实现，如果发生hash冲突怎么解决，hashmap是线程安全的嘛？怎么解决线程不安全的问题?    concurrentHashMap里是怎么实现的，其中">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/14/interview/"/>
+
+
+
+
+
+  <title>JD面试情况1 | 寒江夜雨行个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">寒江夜雨行个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-board">
+          <a href="/board" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/14/interview/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寒江夜雨行">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/2846.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="寒江夜雨行个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JD面试情况1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-14T16:25:19+08:00">
+                2017-07-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>踏着头顶的太阳，去了JD去面试，之前没有准备好，结果被虐的比较惨，记下了面试的一些问题</p>
+<p>1.介绍下ArrayList和linkedList的区别，内部的实现，如果删除linkedList里的一个元素会发生什么变化？</p>
+<p>2.介绍下hashmap的内部实现，如果发生hash冲突怎么解决，hashmap是线程安全的嘛？怎么解决线程不安全的问题?<br>    concurrentHashMap里是怎么实现的，其中的分段是怎么实现的，和hashMap的区别有哪些</p>
+<p>3.mysql有哪些引擎，有什么区别，索引有哪些，b+tree是怎么实现的，b+tree和b-tree的区别及怎样查询，多少次io,及叶子节点，相临节点查询</p>
+<p>4.实现多线程有哪些方式？分别有什么区别？写一段加锁的代码，效率问题，线程的几种状态，线程什么时候开始执行，什么情况下会阻塞</p>
+<p>5.为什么要用线程池，线程池的实现方法有几种，都有什么参数，怎么实现的，流程是怎样的？</p>
+<p>6.数据库的隔离级别有几种，分别解决什么问题？有哪些特性？mysql默认的隔离级别是什么？</p>
+<p>7.redis的数据结构有哪些</p>
+<p>8.spring的aop和ioc分别谈一下，是怎么实现的，用的哪些代理，有什么区别</p>
+<p>最后再补充一些网上看到的问到的问题来扩充一下</p>
+<p>9.hashMap如何扩充bucket的大小，如何遍历map</p>
+<p>10.项目中的queue,单机容量达到上限如何集群扩展</p>
+<p>11.负载均衡有哪些算法</p>
+<p>12.简述三次握手和四次挥手，画下图，如果c端发起请求，s端无法立刻建立连接应该回应什么？</p>
+<p>13.tomcat的组成，包含几部分，如何处理并发数的</p>
+<p>14.spring,spring mvc,ibatis如何处理事务</p>
+<p>15.服务器nginx</p>
+<p>16.mysql的架构，如何实现多版本控制</p>
+<p>17.介绍下jvm结构，及相应的回收算法</p>
+<p>18.maven如何解决版本冲突，release版本和snapshot之间的区别</p>
+<p>19.linux如何查询上下五行</p>
+<p>20.画出项目的架构图，对mvc分层，并进行解释</p>
+<p>21.项目中用struts1还是2，action是单例的嘛</p>
+<p>22.exception异常处理结构，常见的异常，多catch处理</p>
+<p>23.对jkd1.5后新增的并发包做些介绍，都有哪些不同和应用</p>
+<p>24.消息队列，有几种模式，有没有事务，如果消息发送失败怎么处理</p>
+<p>25.贝叶斯算法</p>
+<p>26.知道哪些设计模式，简述下工厂模式的优势</p>
+<p>27.为什么说http是无状态，无连接的</p>
+<p>28.简述下类的加载机制，classloader的类加载时的继承和我们java的继承特性是一个意思嘛？</p>
+<p>29.如果程序在线上出现问题，但是没有打印日志，怎么定位问题</p>
+<p>30.最近在看什么书，什么技术，介绍一下</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/05/Hello/" rel="next" title="Hello">
+                <i class="fa fa-chevron-left"></i> Hello
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/2846.jpg"
+               alt="寒江夜雨行" />
+          <p class="site-author-name" itemprop="name">寒江夜雨行</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">寒江夜雨行</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
